@@ -13,7 +13,6 @@ const mapId = process.env.REACT_APP_GOOGLE_MAPS_MAP_ID;
 const MapShow = () => {
   const [pinsArray, setPinsArray] = useState([]);
   const [selectedPin, setSelectedPin] = useState(null);
-  const [mapCenter, setMapCenter] = useState({ lat: 23.0225, lng: 72.5714 });
 
   function handleClick(e) {
       const obj = {
@@ -30,7 +29,7 @@ const MapShow = () => {
         <div style={{ height: "80vh" }}>
           <Map
             zoom={10}
-            center={mapCenter}
+            center={{ lat: 23.0225, lng: 72.5714 }}
             mapId={mapId}
             onClick={handleClick}
 
@@ -50,7 +49,6 @@ const MapShow = () => {
                 onCloseClick={() => setSelectedPin(null)}
               >
                 <div>
-                  <h4>Custom Pin</h4>
                   <p>Latitude: {selectedPin.lat.toFixed(4)}</p>
                   <p>Longitude: {selectedPin.lng.toFixed(4)}</p>
                 </div>
