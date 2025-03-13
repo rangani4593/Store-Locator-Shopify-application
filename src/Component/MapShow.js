@@ -16,16 +16,13 @@ const MapShow = () => {
   const [mapCenter, setMapCenter] = useState({ lat: 23.0225, lng: 72.5714 });
 
   function handleClick(e) {
-    if (e.detail?.latLng) {
       const obj = {
         lat: e.detail.latLng.lat,
         lng: e.detail.latLng.lng,
       };
       setPinsArray([...pinsArray, obj]);
+    
     }
-  }
-
-
 
   return (
     <div>
