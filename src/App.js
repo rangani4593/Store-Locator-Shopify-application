@@ -1,12 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import Map from './Component/Map';
+import MapShow from './Component/MapShow';
 
 function App() {
   return (
     <div className="App">
       Hello Good moring
-      <Map />
+      <MapShow />
     </div>
   );
 }
