@@ -1,3 +1,12 @@
+.map{
+    width: 70%;
+    margin: 0 auto;
+}
+.map-scale{
+    height: 800px;
+    border-radius: 16px;
+}
+
 .remove-btn {
     background-color: #4d94ff; /* Red color */
     color: white;

@@ -23,7 +23,6 @@ const MapShow = () => {
       setSelectedPin(null);
     }
   }
-
   function handleClick(e) {
     const obj = {
       lat: e.detail.latLng.lat,
@@ -34,9 +33,9 @@ const MapShow = () => {
   }
 
   return (
-    <div>
+    <div className="map">
       <APIProvider apiKey={apiKey}>
-        <div style={{ height: "80vh" }}>
+        <div className="map-scale">
           <Map
             zoom={zoom}
             center={center}
@@ -64,8 +63,8 @@ const MapShow = () => {
                 onCloseClick={() => setSelectedPin(null)}
               >
                 <div>
-                  <p>Latitude: {selectedPin.lat.toFixed(4)}</p>
-                  <p>Longitude: {selectedPin.lng.toFixed(4)}</p>
+                  <p>Latitude: {selectedPin.lat}</p>
+                  <p>Longitude: {selectedPin.lng}</p>
                   <button className="remove-btn" onClick={() => handleRemovePin(selectedPin)}>Remove</button>
                 </div>
               </InfoWindow>
