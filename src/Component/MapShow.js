@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../Component/Component Css/MapShow.css'
 import {
   APIProvider,
   Map,
@@ -14,20 +15,23 @@ const MapShow = () => {
   const [pinsArray, setPinsArray] = useState([]);
   const [selectedPin, setSelectedPin] = useState(null);
   const [zoom, setZoom] = useState(10)
-  const [center, setCenter] = useState({lat: 23.0225, lng: 72.5714})
+  const [center, setCenter] = useState({ lat: 23.0225, lng: 72.5714 })
 
-  function handleUndo(){
-    setPinsArray([...pinsArray.slice(0, -1)])
+  function handleRemovePin(pin) {
+    setPinsArray((prevPins) => prevPins.filter(e => e.lat !== pin.lat || e.lng !== pin.lng) )
+    if (selectedPin && selectedPin.lat === pin.lat && selectedPin.lng === pin.lng) {
+      setSelectedPin(null);
+    }
   }
 
   function handleClick(e) {
-      const obj = {
-        lat: e.detail.latLng.lat,
-        lng: e.detail.latLng.lng,
-      };
-      setPinsArray([...pinsArray, obj]);
-    
-    }
+    const obj = {
+      lat: e.detail.latLng.lat,
+      lng: e.detail.latLng.lng,
+    };
+    setPinsArray([...pinsArray, obj]);
+
+  }
 
   return (
     <div>
@@ -54,21 +58,22 @@ const MapShow = () => {
               </AdvancedMarker>
             ))}
             {selectedPin && (
-                <InfoWindow 
+              <InfoWindow
 
-                position={selectedPin}              
+                position={selectedPin}
                 onCloseClick={() => setSelectedPin(null)}
               >
                 <div>
                   <p>Latitude: {selectedPin.lat.toFixed(4)}</p>
                   <p>Longitude: {selectedPin.lng.toFixed(4)}</p>
+                  <button className="remove-btn" onClick={() => handleRemovePin(selectedPin)}>Remove</button>
                 </div>
               </InfoWindow>
             )}
           </Map>
         </div>
         <div>
-          <button onClick={handleUndo}>Undo</button>
+
         </div>
       </APIProvider>
     </div>

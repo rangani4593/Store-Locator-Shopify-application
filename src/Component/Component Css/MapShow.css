@@ -1,0 +1,19 @@
+.remove-btn {
+    background-color: #4d94ff; /* Red color */
+    color: white;
+    border: none;
+    padding: 10px 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .remove-btn:hover {
+    background-color: #0300cc; /* Darker red on hover */
+  }
+  
+  .remove-btn:active {
+    transform: scale(0.95);
+  }
+  
