@@ -16,6 +16,10 @@ const MapShow = () => {
   const [zoom, setZoom] = useState(10)
   const [center, setCenter] = useState({lat: 23.0225, lng: 72.5714})
 
+  function handleUndo(){
+    setPinsArray([...pinsArray.slice(0, -1)])
+  }
+
   function handleClick(e) {
       const obj = {
         lat: e.detail.latLng.lat,
@@ -38,6 +42,7 @@ const MapShow = () => {
             onCenterChanged={(e) => setCenter(e.detail.center)}
             gestureHandling="greedy"
             zoomControl={true}
+            mapTypeId="roadmap"
           >
             {pinsArray.map((pin, index) => (
               <AdvancedMarker
@@ -61,6 +66,9 @@ const MapShow = () => {
               </InfoWindow>
             )}
           </Map>
+        </div>
+        <div>
+          <button onClick={handleUndo}>Undo</button>
         </div>
       </APIProvider>
     </div>
