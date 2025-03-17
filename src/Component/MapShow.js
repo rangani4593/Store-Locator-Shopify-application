@@ -13,6 +13,8 @@ const mapId = process.env.REACT_APP_GOOGLE_MAPS_MAP_ID;
 const MapShow = () => {
   const [pinsArray, setPinsArray] = useState([]);
   const [selectedPin, setSelectedPin] = useState(null);
+  const [zoom, setZoom] = useState(10)
+  const [center, setCenter] = useState({lat: 23.0225, lng: 72.5714})
 
   function handleClick(e) {
       const obj = {
@@ -28,11 +30,14 @@ const MapShow = () => {
       <APIProvider apiKey={apiKey}>
         <div style={{ height: "80vh" }}>
           <Map
-            zoom={10}
-            center={{ lat: 23.0225, lng: 72.5714 }}
+            zoom={zoom}
+            center={center}
             mapId={mapId}
             onClick={handleClick}
-
+            onZoomChanged={(e) => setZoom(e.detail.zoom)}
+            onCenterChanged={(e) => setCenter(e.detail.center)}
+            gestureHandling="greedy"
+            zoomControl={true}
           >
             {pinsArray.map((pin, index) => (
               <AdvancedMarker
@@ -44,8 +49,9 @@ const MapShow = () => {
               </AdvancedMarker>
             ))}
             {selectedPin && (
-              <InfoWindow
-                position={selectedPin}
+                <InfoWindow 
+
+                position={selectedPin}              
                 onCloseClick={() => setSelectedPin(null)}
               >
                 <div>
